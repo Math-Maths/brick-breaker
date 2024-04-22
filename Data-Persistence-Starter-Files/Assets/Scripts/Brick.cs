@@ -37,6 +37,7 @@ public class Brick : MonoBehaviour
     {
         onDestroyed.Invoke(PointValue);
         
+        AudioManager.instance.PlayClip("break");
         //slight delay to be sure the ball have time to bounce
         Destroy(gameObject, 0.05f);
     }
