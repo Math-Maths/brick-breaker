@@ -16,6 +16,7 @@ public class MainManager : MonoBehaviour
     public Text textPlayerName;
     public Text textHighScore;
     public TMP_Text level;
+    public GameObject instructionText;
     public GameObject GameOverText;
     
     private bool m_Started = false;
@@ -24,10 +25,12 @@ public class MainManager : MonoBehaviour
     private int _levelCount = 0;
     
     private bool m_GameOver = false;
+    private int m_ballCount = 1;
 
     [SerializeField] private Paddle paddle;
 
-    
+    public int NumOfBall { get { return m_ballCount; } set { m_ballCount = value; } }
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +81,7 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                instructionText.SetActive(false);
                 m_Started = true;
                 float randomDirection = UnityEngine.Random.Range(-1.0f, 1.0f);
                 Vector3 forceDir = new Vector3(randomDirection, 1, 0);
@@ -96,6 +100,23 @@ public class MainManager : MonoBehaviour
         }
     }
 
+    public void IncreaseNumBall()
+    {
+        m_ballCount ++;
+    }
+
+    public bool GetGameState(string value)
+    {
+        Debug.Log(m_GameOver +" " + m_Started);
+
+        if(value == "start")
+            return m_Started;
+        else if (value == "end")
+            return m_GameOver;
+        else
+            return true;
+    }
+
     void AddPoint(int point)
     {
         m_Points += point;
@@ -108,7 +129,9 @@ public class MainManager : MonoBehaviour
         {
             _bricksCount --;
         }
+
     }
+
 
     public void GameOver()
     {

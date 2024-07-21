@@ -114,3 +114,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   PointValue: 0
+  powerUps:
+  - {fileID: 3611168724521635512, guid: cee8b4572c2381d44ae5fca2ccbd9a92, type: 3}
+  - {fileID: 3891385217048885197, guid: ec049ef4630e5d94b8aa28321dea6422, type: 3}
+  - {fileID: 262463725181114700, guid: b1e1aaef6e405eb479a939e6907962d9, type: 3}

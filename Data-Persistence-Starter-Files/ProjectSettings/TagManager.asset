@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - brick
+  - ball
+  - powerup-ball
+  - powerup-speed
+  - powerup-size
   layers:
   - Default
   - TransparentFX

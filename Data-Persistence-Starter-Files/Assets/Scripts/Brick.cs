@@ -10,6 +10,8 @@ public class Brick : MonoBehaviour
     
     public int PointValue;
 
+    [SerializeField] private GameObject[] powerUps;
+
     void Start()
     {
         var renderer = GetComponentInChildren<Renderer>();
@@ -33,10 +35,22 @@ public class Brick : MonoBehaviour
         renderer.SetPropertyBlock(block);
     }
 
+    private void CheckForPowerUp()
+    {
+        float index = UnityEngine.Random.Range(1, 10);
+        
+        if(index >= 7.5f)
+        {
+            int i = UnityEngine.Random.Range(0, powerUps.Length);
+            Instantiate(powerUps[i], transform.position, Quaternion.identity);
+        }
+    }
+
+
     private void OnCollisionEnter(Collision other)
     {
         onDestroyed.Invoke(PointValue);
-        
+        CheckForPowerUp();
         AudioManager.instance.PlayClip("break");
         //slight delay to be sure the ball have time to bounce
         Destroy(gameObject, 0.05f);
