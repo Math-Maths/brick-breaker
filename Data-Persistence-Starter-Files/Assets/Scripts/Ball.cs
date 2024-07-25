@@ -19,9 +19,20 @@ public class Ball : MonoBehaviour
     {
         mainManager = GameObject.FindObjectOfType<MainManager>();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name == "DeathZone")
+        {
+            paddle.DuplicateBall -= DuplicateBall;
+            mainManager.DecreaseNumBall();
+            Destroy(gameObject);
+        }
+    }
     
     private void OnCollisionExit(Collision other)
     {
+        
         if(other.gameObject.tag == "ball")
         {
             m_Rigidbody.velocity = -m_Rigidbody.velocity;
@@ -47,7 +58,7 @@ public class Ball : MonoBehaviour
 
         velocity.Normalize();
 
-        m_Rigidbody.velocity = -velocity;
+        m_Rigidbody.velocity = velocity;
         AudioManager.instance.PlayClip("bounce");
     }
 

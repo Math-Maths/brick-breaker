@@ -105,6 +105,20 @@ public class MainManager : MonoBehaviour
         m_ballCount ++;
     }
 
+    public void DecreaseNumBall()
+    {
+        if(m_ballCount > 1)
+        {
+            m_ballCount --;
+        }
+        else if(m_ballCount <= 1)
+        {
+            m_ballCount --;
+            GameOver();
+        }
+        
+    }
+
     public bool GetGameState(string value)
     {
         Debug.Log(m_GameOver +" " + m_Started);
